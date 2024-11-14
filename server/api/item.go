@@ -72,7 +72,7 @@ func (server *Server) buyItemWithDistributeLock(ctx *gin.Context) {
 	}
 
 	token := util.GenerateLockToken()
-	lockName := strconv.Itoa(int(req.ItemID)) // I assume this cast might cause problem
+	lockName := strconv.Itoa(int(req.ItemID))
 
 	// This blocks the function
 	err := server.WaitForDistributeLock(ctx, lockName, token)

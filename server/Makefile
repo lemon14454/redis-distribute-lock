@@ -1,6 +1,9 @@
 postgres:
 	docker run --name scale_db -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:14-alpine
 
+redis:
+	docker run --name scale_redis -p 6379:6379 -d redis
+
 createdb:
 	docker exec -it scale_db createdb --username=root --owner=root scale
 

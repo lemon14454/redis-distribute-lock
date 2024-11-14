@@ -69,8 +69,6 @@ func (server *Server) ReleaseDistributeLock(lockName, token string) error {
 	}
 
 	if ret, _ := val.(int64); ret != 1 {
-		// fmt.Println("release lock expect: ", lockName, token)
-		// fmt.Println("release lock return: ", ret)
 		return errors.New("can not unlock, thread does not own the lock")
 	}
 
@@ -97,6 +95,7 @@ func (server *Server) WaitForDistributeLock(ctx context.Context, lockName, token
 
 		set, err := server.GetDistributeLock(lockName, token)
 		if set {
+			// set=true means get key
 			return nil
 		}
 
@@ -107,3 +106,4 @@ func (server *Server) WaitForDistributeLock(ctx context.Context, lockName, token
 
 	return nil
 }
+

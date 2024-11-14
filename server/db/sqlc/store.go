@@ -54,6 +54,7 @@ func (store *Store) BuyItemTx(ctx context.Context, arg BuyItemTxParams) (BuyItem
 		var err error
 		var item Item
 
+		// item, err = q.GetItemForUpdate(ctx, arg.ItemID) Database Exclusive Lock With FOR UPDATE
 		item, err = q.GetItem(ctx, arg.ItemID)
 		if err != nil {
 			log.Printf("Can't get item to buy: %v", err)
